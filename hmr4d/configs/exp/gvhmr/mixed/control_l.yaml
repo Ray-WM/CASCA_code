@@ -1,0 +1,79 @@
+# @package _global_
+# GVHMR-control-L: parameter-matched single-encoder control (E2).
+# Same recipe as the baseline; only the encoder depth changes.
+# d=512, num_layers 12 -> 16  =>  53.47M params (CASCA: 53.99M, +1.0%).
+# NOTE: the pre-wipe control-L was 52.37M with an unrecovered width/depth
+# recipe (closest match: L13/d560=52.51M). Since everything is retrained,
+# we redefine control-L as the cleaner depth-only variant above; all its
+# numbers will be re-derived from this run.
+defaults:
+    - override /data: mocap/trainX_testY
+    - override /model: gvhmr/gvhmr_pl
+    - override /endecoder: gvhmr/v1_amass_local_bedlam_cam
+    - override /optimizer: adamw_2e-4
+    - override /scheduler_cfg: epoch_half_200_350
+    - override /train_datasets:
+          - pure_motion_amass/v11
+          - imgfeat_bedlam/v2
+          - imgfeat_h36m/v1
+          - imgfeat_3dpw/v1
+    - override /test_datasets:
+          - emdb1/v1
+          - emdb2/v1
+          - rich/all
+          - 3dpw/v1
+    - override /callbacks:
+          - simple_ckpt_saver/every10e_top100
+          - prog_bar/prog_reporter_every0.1
+          - train_speed_timer/base
+          - lr_monitor/pl
+          - metric_emdb1
+          - metric_emdb2
+          - metric_rich
+          - metric_3dpw
+    - override /network: gvhmr/relative_transformer
+
+exp_name_base: mixed
+exp_name_var: "_control_l"
+exp_name: ${exp_name_base}${exp_name_var}
+data_name: mocap_mixed_v1
+
+network:
+    num_layers: 16
+
+pipeline:
+    _target_: hmr4d.model.gvhmr.pipeline.gvhmr_pipeline.Pipeline
+    args_denoiser3d: ${network}
+    args:
+        endecoder_opt: ${endecoder}
+        normalize_cam_angvel: True
+        weights:
+            cr_j3d: 500.
+            transl_c: 1.
+            cr_verts: 500.
+            j2d: 1000.
+            verts2d: 1000.
+            transl_w: 1.
+            static_conf_bce: 1.
+        static_conf:
+            vel_thr: 0.15
+
+data:
+    loader_opts:
+        train:
+            batch_size: 128
+            num_workers: 12
+
+pl_trainer:
+    precision: 16-mixed
+    log_every_n_steps: 50
+    gradient_clip_val: 0.5
+    max_epochs: 500
+    check_val_every_n_epoch: 10
+    devices: 2
+
+logger:
+    _target_: pytorch_lightning.loggers.TensorBoardLogger
+    save_dir: ${output_dir}
+    name: ""
+    version: "tb"

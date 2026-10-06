@@ -1,0 +1,26 @@
+# @package _global_
+# E4-R per-frame export task (TCSVT revision).
+# NOTE: non-flip test datasets — matches the GVHMR-control protocol
+# (no test-time flip) used for all controlled variants.
+defaults:
+  - override /data: mocap/testY
+  - override /test_datasets:
+      - rich/all
+      - emdb1/v1
+      - emdb2/v1
+      - 3dpw/v1
+  - override /callbacks:
+      - metric_rich
+      - metric_emdb1
+      - metric_emdb2
+      - metric_3dpw
+      - e4r_export
+  - _self_
+
+task: test
+data_name: test_mocap
+ckpt_path: ??? # pass on CLI
+
+pl_trainer:
+  devices: 1
+logger: null

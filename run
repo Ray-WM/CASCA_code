@@ -1,0 +1,23 @@
+#!/bin/bash
+# Code Ocean entry point: environment smoke test (no data or GPU required).
+# Verifies that the CASCA code tree imports cleanly and reports versions.
+set -e
+cd "$(dirname "$0")"
+python - << 'EOF'
+import torch
+print("torch", torch.__version__, "| cuda available:", torch.cuda.is_available())
+import importlib
+mods = [
+    "hmr4d.network.gvhmr.casca_transformer",
+    "hmr4d.network.gvhmr.fuze_transformer",
+    "hmr4d.network.gvhmr.shared_cond_transformer",
+    "hmr4d.network.gvhmr.gavphr_transformer",
+    "hmr4d.network.gvhmr.opti_crossAtt_transformer",
+    "hmr4d.network.gvhmr.residual_crossatt_transformer",
+]
+for m in mods:
+    importlib.import_module(m)
+    print("import ok:", m)
+print("\nAll CASCA modules import cleanly. Training and evaluation require")
+print("the GVHMR datasets and checkpoints; see README.md for commands.")
+EOF
