@@ -1,6 +1,6 @@
-# CASCA: Confidence-Aware Selective Cross-Attention for Robust World-Grounded Human Motion Recovery
+# Isolate, Then Selectively Integrate: What Dual-Stream Temporal Fusion Buys and Forfeits in World-Grounded Human Motion Recovery
 
-Code accompanying our IEEE TCSVT submission. CASCA encodes 2D-pose and
+Code accompanying our submission. CASCA encodes 2D-pose and
 visual-context signals in two isolated temporal streams and re-couples
 them through zero-initialized, reliability-conditioned cross-attention.
 This repository contains the architecture, all seven controlled encoder
