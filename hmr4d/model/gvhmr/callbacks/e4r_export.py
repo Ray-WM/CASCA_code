@@ -1,4 +1,4 @@
-"""E4-R per-frame export for the dose-response analysis (TCSVT revision).
+"""Per-frame export for the dose-response and census analyses.
 
 For every test sequence of RICH / EMDB-1 / EMDB-2 / 3DPW, export per-frame:
   - mpjpe        : dataset-standard camera-space MPJPE (mm), mirroring the

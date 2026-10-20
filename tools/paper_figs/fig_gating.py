@@ -6,7 +6,7 @@ Numbers from the MM manuscript Sec. 4.5 / rebuttal; the E4-R export will
 add the d_t-vs-degradation curve as a third panel (placeholder flag below).
 
 Usage: python tools/paper_figs/fig_gating.py
-Out:   Paper/TCSVT/pic/Fig_gating.pdf
+Out:   paper/pic/Fig_gating.pdf
 """
 
 import sys
@@ -67,7 +67,7 @@ def main():
                      textcoords="offset points", fontsize=7)
     ax2.set_xticks(list(xs)); ax2.set_xticklabels([n for n, _ in RHO])
     ax2.set_ylabel(r"Spearman $\rho(d_t, g_{\mathrm{GT}})$"); ax2.set_ylim(0, 0.75)
-    out = Path(__file__).parents[2] / "Paper/TCSVT/pic/Fig_gating.pdf"
+    out = Path(__file__).parents[2] / "paper/pic/Fig_gating.pdf"
     fig.savefig(out)
     print(f"wrote {out}")
 

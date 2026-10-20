@@ -4,7 +4,7 @@ Panels: constant offset / Gaussian noise / zero confidence — dMPJPE vs
 offset from the corruption window, control vs CASCA, valid frames only.
 
 Usage: python tools/paper_figs/fig_probe.py
-Out:   Paper/TCSVT/pic/Fig_probe.pdf
+Out:   paper/pic/Fig_probe.pdf
 """
 
 import json
@@ -55,7 +55,7 @@ def main():
         ax.set_xlabel("offset from corruption window (frames)")
     axes[0].set_ylabel(r"$\Delta$MPJPE (mm)")
     axes[0].legend(loc="upper left")
-    out = Path(__file__).parents[2] / "Paper/TCSVT/pic/Fig_probe.pdf"
+    out = Path(__file__).parents[2] / "paper/pic/Fig_probe.pdf"
     fig.savefig(out)
     print(f"wrote {out}")
 

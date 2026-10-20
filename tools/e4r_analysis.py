@@ -10,7 +10,7 @@ Per dataset:
      averaging (weighted-reconstruction check).
   4. Gate-information stats (CASCA only): corr(d_t, g), d_t by stratum.
 Headline numbers -> results/e4r/analysis/analysis_numbers.json, matching
-the \\TODO{E4-R}/\\TODO{E6} markers in the TCSVT tex.
+the stratified and dose-response numbers quoted in the paper.
 
 Bootstrap resamples SEQUENCES (not frames) using per-sequence sufficient
 statistics, so 10k iterations stay fast even on 100k-frame datasets.

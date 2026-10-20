@@ -1,4 +1,4 @@
-"""Shared matplotlib style for all TCSVT paper figures.
+"""Shared matplotlib style for the paper figures.
 
 One entity = one color across every figure (color follows the entity):
   CASCA     : blue   #0072B2  (ours — the standout)
@@ -29,7 +29,7 @@ MODEL_STYLE = {
     "smoothnet": dict(color="#56B4E9", ls=":", label="+ SmoothNet"),
 }
 
-# IEEE Transactions column widths (inches)
+# Two-column journal column and page widths (inches)
 W_COL = 3.5
 W_PAGE = 7.16
 
@@ -39,7 +39,7 @@ def setup(font_scale=1.0):
         {
             "figure.dpi": 150,
             "savefig.dpi": 300,
-            "pdf.fonttype": 42,  # TrueType — required by IEEE PDF checks
+            "pdf.fonttype": 42,  # embed TrueType fonts for publisher PDF checks
             "ps.fonttype": 42,
             "font.family": "serif",
             "font.size": 8 * font_scale,

@@ -1,11 +1,11 @@
 """Vector redraw of the reliability-stratified MPJPE figure (paper Fig. 4).
 
-Data: T6 numbers from CASCA_TCSVT_实验数据模板.md (RICH strata, all five
-controlled variants). Heavy-stratum n is pending the E0 integrity check —
-the group is drawn but flagged in the caption, not here.
+Data: reliability-stratified RICH numbers of the paper (all five
+controlled variants). The heavy stratum is drawn but its small n is
+flagged in the paper caption, not here.
 
 Usage: python tools/paper_figs/fig_stratified.py
-Out:   Paper/TCSVT/pic/Fig_stratified.pdf
+Out:   paper/pic/Fig_stratified.pdf
 """
 
 import sys
@@ -52,7 +52,7 @@ def main():
     ax.set_ylabel("MPJPE (mm)")
     ax.set_ylim(0, 185)  # bars encode length: keep the zero baseline
     ax.legend(ncols=2, loc="upper left")
-    out = Path(__file__).parents[2] / "Paper/TCSVT/pic/Fig_stratified.pdf"
+    out = Path(__file__).parents[2] / "paper/pic/Fig_stratified.pdf"
     fig.savefig(out)
     print(f"wrote {out}")
 

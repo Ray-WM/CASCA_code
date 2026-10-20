@@ -5,7 +5,7 @@ most discriminative timestamp, top-down root trajectory, per-frame error
 curve with d_t shading.
 
 Usage: python tools/paper_figs/fig_qualitative.py
-Out:   Paper/TCSVT/pic/Fig_qualitative.pdf
+Out:   paper/pic/Fig_qualitative.pdf
 """
 
 import json
@@ -130,7 +130,7 @@ def main():
             seen.add(l); H.append(h); L.append(l)
     fig.legend(H, L, fontsize=7, ncols=3, loc="lower center",
                bbox_to_anchor=(0.5, -0.015), frameon=False)
-    out = Path(__file__).parents[2] / "Paper/TCSVT/pic/Fig_qualitative.pdf"
+    out = Path(__file__).parents[2] / "paper/pic/Fig_qualitative.pdf"
     fig.savefig(out)
     print(f"wrote {out}")
 

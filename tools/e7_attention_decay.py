@@ -1,5 +1,5 @@
 """E7: measure attention decay vs. temporal distance on a trained model
-(empirical support for Assumption A / banded attention in the TCSVT paper).
+(empirical support for the banded-attention assumption in the paper).
 
 Patches RoPEAttention to accumulate, per layer, the mean post-softmax
 attention weight as a function of |t - s| (aggregated on the fly, so long

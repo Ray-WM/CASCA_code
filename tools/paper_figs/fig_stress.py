@@ -4,7 +4,7 @@ Two panels: EMDB-2 and RICH WA-MPJPE vs corruption rate p, for
 control / control+SG / control-L (if available) / CASCA.
 
 Usage: python tools/paper_figs/fig_stress.py
-Out:   Paper/TCSVT/pic/Fig_stress.pdf
+Out:   paper/pic/Fig_stress.pdf
 """
 
 import json
@@ -49,7 +49,7 @@ def main():
         ax.set_xticks(X)
     axes[0].set_ylabel(r"WA-MPJPE (mm) $\downarrow$")
     axes[0].legend(fontsize=5.5, loc="upper left")
-    out = Path(__file__).parents[2] / "Paper/TCSVT/pic/Fig_stress.pdf"
+    out = Path(__file__).parents[2] / "paper/pic/Fig_stress.pdf"
     fig.savefig(out)
     print(f"wrote {out}")
 

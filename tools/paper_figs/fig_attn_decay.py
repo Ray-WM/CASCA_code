@@ -2,7 +2,7 @@
 (log scale) for the trained control encoder, with exponential fit.
 
 Usage: python tools/paper_figs/fig_attn_decay.py
-Out:   Paper/TCSVT/pic/Fig_attn_decay.pdf
+Out:   paper/pic/Fig_attn_decay.pdf
 """
 import json
 import sys
@@ -37,7 +37,7 @@ def main():
     ax.set_xlabel(r"temporal distance $|t-s|$ (frames)")
     ax.set_ylabel("mean attention")
     ax.legend(fontsize=6.5)
-    out = Path(__file__).parents[2] / "Paper/TCSVT/pic/Fig_attn_decay.pdf"
+    out = Path(__file__).parents[2] / "paper/pic/Fig_attn_decay.pdf"
     fig.savefig(out)
     print(f"wrote {out}")
 
